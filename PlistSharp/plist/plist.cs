@@ -1,4 +1,5 @@
 using System;
+using System;
 using System.Runtime.InteropServices;
 using va_list = System.IntPtr;
 
@@ -37,7 +38,7 @@ namespace PlistSharp
         /// <param name="val">the sting value, encoded in UTF8.</param>
         /// <returns>the created item</returns>
         [DllImport(LibPlist)]
-        public static extern plist_t plist_new_string(/* const char * */ string val);
+        public static extern plist_t plist_new_string(/* const char * */ [MarshalAs(UnmanagedType.LPUTF8Str)] string val);
 
 
         /// <summary>
@@ -493,7 +494,7 @@ namespace PlistSharp
         /// <param name="node">the node</param>
         /// <param name="val">the key value</param>
         [DllImport(LibPlist)]
-        public static extern void plist_set_key_val(plist_t node, /* const char * */ string val);
+        public static extern void plist_set_key_val(plist_t node, /* const char * */ [MarshalAs(UnmanagedType.LPUTF8Str)]  string val);
 
 
         /// <summary>
@@ -506,7 +507,7 @@ namespace PlistSharp
         /// freed by the node.
         /// </param>
         [DllImport(LibPlist)]
-        public static extern void plist_set_string_val(plist_t node, /* const char * */ string val);
+        public static extern void plist_set_string_val(plist_t node, /* const char * */ [MarshalAs(UnmanagedType.LPUTF8Str)] string val);
 
 
         /// <summary>
