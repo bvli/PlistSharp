@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFrameworks>net472;net5.0</TargetFrameworks>
@@ -24,4 +24,19 @@
     <None Include="runtimes/**" CopyToOutputDirectory="PreserveNewest" Pack="True" PackagePath="runtimes/" />
   </ItemGroup>
 
+  <ItemGroup Condition="'$(PublishProfileName)' == ''">
+    <!-- temporary - just until fixed nuget is published -->
+    <None Include="runtimes/linux-x64/native/libplist.so">
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Include="runtimes/win-x64/native/plist.dll">
+        <TargetPath>%(Filename)%(Extension)</TargetPath>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Include="runtimes/osx-x64/native/libplist.dylib">
+        <TargetPath>%(Filename)%(Extension)</TargetPath>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
 </Project>
