@@ -24,7 +24,8 @@
     <None Include="runtimes/**" CopyToOutputDirectory="PreserveNewest" Pack="True" PackagePath="runtimes/" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(PublishProfileName)' == ''">
+  <!--<ItemGroup Condition="'$(PublishProfileName)' == ''">-->
+  <ItemGroup>
     <!-- temporary - just until fixed nuget is published -->
     <None Include="runtimes/linux-x64/native/libplist.so">
       <TargetPath>%(Filename)%(Extension)</TargetPath>
