@@ -1,0 +1,39 @@
+name: Push nuget package to nuget feed
+on:
+  release:
+    types: [published]
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: "1"
+  DOTNET_INSTALL_DIR: ./.dotnet
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    container:
+      image: catthehacker/ubuntu:act-latest
+
+    steps:
+      - name: 🤘 checkout
+        uses: actions/checkout@v4
+
+      - name: ⚙ setup dotnet SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+          source-url: ${{ secrets.NUGET_FEED }}
+        env:
+          NUGET_AUTH_TOKEN: ${{ secrets.NUGET_TOKEN }}
+
+      - name: 📎 restore
+        run: dotnet restore ./PlistSharp/PlistSharp.csproj
+
+      - name: 🙏 build
+        run: dotnet build --no-restore --configuration Release ./PlistSharp/PlistSharp.csproj
+      
+      - name: 📦 pack
+        run: dotnet pack --configuration Release --no-build --output ./packages ./PlistSharp/PlistSharp.csproj
+      
+      - name: 🚀 push
+        run: dotnet nuget push ./packages/*.nupkg
