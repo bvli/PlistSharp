@@ -1,18 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net472;net5.0</TargetFrameworks>
+    <TargetFrameworks>net472;net8.0</TargetFrameworks>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <NoWarn>$(NoWarn);1591</NoWarn>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Authors>he55</Authors>
-    <Version>1.8</Version>
+    <Authors>he55,bvli</Authors>
+    <Version>1.9</Version>
     <Description>A library to handle Apple Property List format in binary or XML</Description>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/he55</RepositoryUrl>
+    <RepositoryUrl>https://git.beverli.net/bvli/PListSharp</RepositoryUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageIcon>Icon.png</PackageIcon>
     <PackageTags>plist;libplist</PackageTags>
